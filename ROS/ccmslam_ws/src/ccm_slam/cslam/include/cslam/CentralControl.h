@@ -50,18 +50,27 @@ class ClientHandler;
 //--------------
 
 struct CentralControl {
-public:
+ public:
   typedef boost::shared_ptr<ClientHandler> chptr;
   typedef boost::shared_ptr<UniqueIdDispenser> uidptr;
 
-public:
+ public:
   CentralControl(ros::NodeHandle Nh, ros::NodeHandle NhPrivate, size_t ClientId,
                  eSystemState SysState, chptr pCH = nullptr,
                  uidptr pUID = nullptr, g2o::Sim3 g2oS_wc_wm = g2o::Sim3())
-      : mNh(Nh), mNhPrivate(NhPrivate), mClientId(ClientId), mpCH(pCH),
-        mpUID(pUID), mbOptActive(false), mSysState(SysState), mbCommLock(false),
-        mbMappingLock(false), mbPlaceRecLock(false), mbTrackingLock(false),
-        mg2oS_wcurmap_wclientmap(g2oS_wc_wm), mbGotMerged(false),
+      : mNh(Nh),
+        mNhPrivate(NhPrivate),
+        mClientId(ClientId),
+        mpCH(pCH),
+        mpUID(pUID),
+        mbOptActive(false),
+        mSysState(SysState),
+        mbCommLock(false),
+        mbMappingLock(false),
+        mbPlaceRecLock(false),
+        mbTrackingLock(false),
+        mg2oS_wcurmap_wclientmap(g2oS_wc_wm),
+        mbGotMerged(false),
         mbOptimized(false) {
     //...
   }
@@ -74,12 +83,12 @@ public:
   size_t mClientId;
   string mNativeOdomFrame;
   chptr mpCH;
-  g2o::Sim3 mg2oS_wcurmap_wclientmap; // Sim3 world client to world map
+  g2o::Sim3 mg2oS_wcurmap_wclientmap;  // Sim3 world client to world map
   eSystemState mSysState;
   // System Control
   bool mbOptActive;
   bool mbGotMerged;
-  bool mbOptimized; // signalizes that has seen GBA;
+  bool mbOptimized;  // signalizes that has seen GBA;
   Eigen::Matrix4d mT_SC;
   // Thread Sync
   bool LockComm() {
@@ -168,7 +177,7 @@ public:
   boost::shared_ptr<estd::mylog> mpLogger;
 #endif
 
-private:
+ private:
   // Thread Sync
   bool mbCommLock;
   bool mbMappingLock;
@@ -181,6 +190,6 @@ private:
   mutex mMutexTracking;
 };
 
-} // namespace cslam
+}  // namespace cslam
 
 #endif
