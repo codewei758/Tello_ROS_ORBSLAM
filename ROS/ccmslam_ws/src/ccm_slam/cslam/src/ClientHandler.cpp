@@ -22,8 +22,8 @@
 * along with CCM-SLAM. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <cslam/ClientHandler.h>
 #include <Eigen/Geometry>
+#include <cslam/ClientHandler.h>
 
 namespace cslam {
 
